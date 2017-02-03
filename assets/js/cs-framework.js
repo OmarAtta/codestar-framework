@@ -67,6 +67,39 @@
   // ======================================================
 
   // ======================================================
+  // CSFRAMEWORK STICKY HEADER
+  // ------------------------------------------------------
+  $.fn.CSFRAMEWORK_STICKYHEADER = function() {
+
+    var header        = this,
+        headerOffset  = header.offset().top;
+
+    $(window).on( 'scroll.csStickyHeader', function(){
+      //Update Header Width and Height When Scroll
+      var headerHeight  = header.outerHeight(),
+          headerWidth   = header.outerWidth();
+
+      if ($(this).scrollTop() > headerOffset - 32) {
+        header.addClass('cs-sticky-header');
+        header.css({
+          'width'       : headerWidth + 'px',
+          'height'      : headerHeight + 'px'
+        });
+        $('.cs-option-framework').css('padding-top', headerHeight);
+      }else {
+        header.removeClass('cs-sticky-header');
+        header.css({
+          'width'       : '',
+          'height'      : ''
+        });
+        $('.cs-option-framework').css('padding-top', '');
+      }
+    });
+  };
+
+  // ======================================================
+  
+  // ======================================================
   // CSFRAMEWORK DEPENDENCY
   // ------------------------------------------------------
   $.CSFRAMEWORK.DEPENDENCY = function( el, param ) {
@@ -1422,6 +1455,7 @@
   // ------------------------------------------------------
   $(document).ready( function() {
     $('.cs-framework').CSFRAMEWORK_TAB_NAVIGATION();
+    $('.cs-header').CSFRAMEWORK_STICKYHEADER();
     $('.cs-reset-confirm, .cs-import-backup').CSFRAMEWORK_CONFIRM();
     $('.cs-content, .wp-customizer, .widget-content, .cs-taxonomy').CSFRAMEWORK_DEPENDENCY();
     $('.cs-field-group').CSFRAMEWORK_GROUP();
