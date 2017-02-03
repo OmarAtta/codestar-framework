@@ -1843,3 +1843,11 @@
     margin-left: 0;
   }
 }
+
+.cs-header.cs-sticky-header {
+  position    : fixed;
+  margin-top  : 0;
+  top         : 32px;
+  z-index     : 9999;
+  box-sizing  : border-box;
+}
