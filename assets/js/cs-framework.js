@@ -78,7 +78,8 @@
         //Update Header Width and Height When Scroll
         var headerHeight  = header.outerHeight(),
             headerWidth   = header.outerWidth();
-
+        
+        //32=> Admin Bar Height
         if ($(this).scrollTop() > headerOffset - 32) {
           header.addClass('cs-sticky-header');
           header.css({
@@ -94,6 +95,12 @@
           });
           $('.cs-option-framework').css('padding-top', '');
         }
+      });
+      
+      //Update Header Width when Window Resize
+      $(window).on('resize.csStickyHeader', function() {
+      	var headerWidth	= $('.cs-sticky-header').siblings('.cs-body').outerWidth();
+      	$('.cs-sticky-header').css('width', headerWidth);
       });
     }
   };
